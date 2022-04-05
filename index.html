@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <link rel="stylesheet" href="/src/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="ecran">
+            <div id="expression">&nbsp;</div>
+            <div id="resultat">0</div>
+        </div>
+        <div id="function">    
+            <button class="fctBtn" onclick="puissance(2)">()²</button>    
+            <button class="fctBtn" onclick="puissance()">()<span class="up">n</span></button>    
+            <button class="fctBtn" onclick="racine(2)"><span class="up">2</span>&radic; </button>    
+            <button class="fctBtn" onclick="racine()"><span class="up">n</span>&radic; </button>
+            <button class="fctBtn" onclick="fact()">!</button>    
+            <button class="fctBtn" onclick="expo()">exp</button>    
+            <button class="fctBtn" onclick="ln()">ln</button>    
+            <button class="fctBtn" onclick="sin()">sin</button>    
+            <button class="fctBtn" onclick="cos()">cos</button>    
+            <button class="fctBtn" onclick="tan()">tan</button>    
+        </div>
+        <div id="buttons">
+            <div id="nbr">
+                <button class="btnNbr" onclick="insert('1')">1</button>
+                <button class="btnNbr" onclick="insert('2')">2</button>
+                <button class="btnNbr" onclick="insert('3')">3</button>
+                <button class="btnNbr" onclick="insert('4')">4</button>
+                <button class="btnNbr" onclick="insert('5')">5</button>
+                <button class="btnNbr" onclick="insert('6')">6</button>
+                <button class="btnNbr" onclick="insert('7')">7</button>
+                <button class="btnNbr" onclick="insert('8')">8</button>
+                <button class="btnNbr" onclick="insert('9')">9</button>
+                <button class="btnNbr" onclick="insert('.')">.</button>
+                <button class="btnNbr" onclick="insert('0')">0</button>
+                <button class="operation" onclick="parenthese()">( )</button>
+            </div>
+            <div id="operation">
+                <button class="fctBtn clr" onclick="del()">Del</button>
+                <button class="fctBtn clr" onclick="clearScr()">C</button>
+                <button class="operation" onclick="addition()">+</button>
+                <button class="operation" onclick="soustraction()">-</button>
+                <button class="operation" onclick="multiplication()">*</button>
+                <button class="operation" onclick="division()">/</button>
+                <button class="operation" onclick="modulo()">%</button>
+                <button class="operation" onclick="resultat()">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
