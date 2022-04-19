@@ -1,11 +1,61 @@
 let expression= '';
 
 String.prototype.toSqrt= function(){
-    return toSqrt(this);
+    let res= this;
+    if(this.search(/R/)!=-1){
+        const regexToGetContenu= /(?<=R\()(.*)(?=\))|(?<=R\()([A-Z]\({1}.*\){1})(?=\))/;
+        const contenu= regexToGetContenu.exec(this)
+
+        contenu[1]= (contenu[1]==undefined) ? contenu[2] : contenu[1];
+
+        res= res.replace(`R(${contenu[0]})`, `Math.sqrt(${contenu[1]})`);
+        console.log(res);
+        res= res.toSqrt();
+    }
+
+    return res;
 }
 
 String.prototype.toPow= function(){
-    return toPow(this)
+    let res= this;
+    if (res.search(/\^/)!=-1) {
+        let jsPowExpression= '';
+    
+        const regexToGetnbr= /(\w*\.?\w+\(.+\)|[^,\^*\/+\-\(\)]+|\(.+\))(?=\^)/;
+        let nbr= regexToGetnbr.exec(res);
+        
+        // console.log(nbr);
+        
+        const regexToGetExp= new RegExp(`(?<=${toRegExp(nbr[0])}\\^)\\(([^,]*)\\)+|(?<=${toRegExp(nbr[0])}\\^)([^,\\^\\*\\/\\+\\-\\(\\)]*)`)
+        let exposant= regexToGetExp.exec(res);
+        
+        nbr[1]= (nbr[1]==undefined)? nbr[2] : nbr[1];
+        exposant[1]= (exposant[1]==undefined)? exposant[2] : exposant[1];
+        
+        jsPowExpression= `(Math.pow(${nbr[1]}, ${exposant[1]}))`;
+        
+        // console.log(exposant);
+        
+        res= res.replace(`${nbr[0]}^${exposant[0]}`, jsPowExpression);
+        
+        // console.log(res);
+        
+        res= res.toPow();
+    }
+    return res;
+}
+
+String.prototype.toFact= function(){
+    let res= this;
+    if(res.search(/!/)!=-1){
+        const regexFact= /(\w*\.?\w+\(.+\)|[^,\^*\/+\-\(\)]+|\(.+\))(?=\!)/;
+        const nbr= regexFact.exec(res);
+
+        res= res.replace(`${nbr[0]}!`, `fact(${nbr[0]})`)
+        res= res.toFact();
+    }
+
+    return res;
 }
 
 /**
@@ -30,7 +80,7 @@ function toHuman(param){
  * @returns {String} A valid JS expression that gonna be available to use in the JS function eval()
  */
 function toJs(param){
-    return param.toPow().toSqrt().replace('P', 'Math.PI');
+    return param.toPow().toSqrt().toFact().replace('P', 'Math.PI');
 }
 
 function showExpression(){
@@ -55,48 +105,15 @@ function del(){
 
 function insert(param){
     let masque= /[*\/%]/;
-    expression+= ((param!='(') && (param!=')') && (param.search(masque)!=-1) && (isNaN(expression[expression.length-1])))?`0${param}`:param;
+    expression+= ((expression[expression.length-1]!=')') && (param.search(masque)!=-1) && (isNaN(expression[expression.length-1])))?`0${param}`:param;
     showExpression();
 }
 
-/**
- * 
- * @param {String} param
- * @returns {String} Return a string where all "^" are replaced with the JS function Math.pow() 
- */
-function toPow(param){
-    if (param.search(/\^/)!=-1) {
-        let jsPowExpression= '';
-    
-        const regexToGetnbr= /(\w*\.?\w+\(.+\))(?=\^)|(\(.+\))(?=\)\^)|([^,\^*\/+\-\(\)]+)(?=\^)/;
-        let nbr= regexToGetnbr.exec(param);
-    
-        const regexToGetExp= new RegExp(`(?<=${toRegExp(nbr[0])}\\^)\\(([^,]*)\\)+|(?<=${toRegExp(nbr[0])}\\^)([^,\\^\\*\\/\\+\\-\\(\\)]*)`)
-        let exposant= regexToGetExp.exec(param);
-        
-        nbr[1]= (nbr[1]==undefined)? nbr[2] : nbr[1];
-        exposant[1]= (exposant[1]==undefined)? exposant[2] : exposant[1];
-        
-        jsPowExpression= `(Math.pow(${nbr[1]}, ${exposant[1]}))`;
-        console.log(nbr, exposant);
-        param= param.replace(`${nbr[0]}^${exposant[0]}`, jsPowExpression);
-        console.log(param);
-        param= toPow(param);
-    }
-    return param;
-}
+function fact(nbr){
+    let res= 1;
 
-function toSqrt(param){
-    if(param.search(/R/)!=-1){
-        const regexToGetContenu= /(?<=R\()(.*)(?=\))|(?<=R\()([A-Z]\({1}.*\){1})(?=\))/;
-        const contenu= regexToGetContenu.exec(param)
+    while(nbr>0)
+        res*= nbr--;
 
-        contenu[1]= (contenu[1]==undefined) ? contenu[2] : contenu[1];
-
-        param= param.replace(`R(${contenu[0]})`, `Math.sqrt(${contenu[1]})`);
-        console.log(param);
-        param= toSqrt(param);
-    }
-
-    return param;
+    return res;
 }
