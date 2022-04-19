@@ -13,44 +13,64 @@
             <div id="expression">&nbsp;</div>
             <div id="resultat">0</div>
         </div>
-        <div id="function">    
-            <button class="fctBtn" onclick="puissance(2)">()²</button>    
-            <button class="fctBtn" onclick="puissance()">()<span class="up">n</span></button>    
-            <button class="fctBtn" onclick="racine(2)"><span class="up">2</span>&radic; </button>    
-            <button class="fctBtn" onclick="racine()"><span class="up">n</span>&radic; </button>
-            <button class="fctBtn" onclick="fact()">!</button>    
-            <button class="fctBtn" onclick="expo()">exp</button>    
-            <button class="fctBtn" onclick="ln()">ln</button>    
-            <button class="fctBtn" onclick="sin()">sin</button>    
-            <button class="fctBtn" onclick="cos()">cos</button>    
-            <button class="fctBtn" onclick="tan()">tan</button>    
-        </div>
         <div id="buttons">
-            <div id="nbr">
-                <button class="btnNbr" onclick="insert('1')">1</button>
-                <button class="btnNbr" onclick="insert('2')">2</button>
-                <button class="btnNbr" onclick="insert('3')">3</button>
-                <button class="btnNbr" onclick="insert('4')">4</button>
-                <button class="btnNbr" onclick="insert('5')">5</button>
-                <button class="btnNbr" onclick="insert('6')">6</button>
-                <button class="btnNbr" onclick="insert('7')">7</button>
-                <button class="btnNbr" onclick="insert('8')">8</button>
-                <button class="btnNbr" onclick="insert('9')">9</button>
-                <button class="btnNbr" onclick="insert('.')">.</button>
-                <button class="btnNbr" onclick="insert('0')">0</button>
-                <button class="operation" onclick="parenthese()">( )</button>
+            <div id="nav" class="gridRow">
+                <div id="leftNav">
+                    <button id="btnSetting" class="navBtn"><small>Setting</small></button>
+                </div>
+                <div id="middleNav">
+                    <button id="btnLeft" class="navBtn">&triangleleft;</button>
+                    <button id="btnRight" class="navBtn">&triangleright;</button>
+                </div>
+                <div id="rightNav">
+                    <button id="btnOff" class="navBtn">Off</button>
+                </div>
             </div>
-            <div id="operation">
-                <button class="fctBtn clr" onclick="del()">Del</button>
-                <button class="fctBtn clr" onclick="clearScr()">C</button>
-                <button class="operation" onclick="addition()">+</button>
-                <button class="operation" onclick="soustraction()">-</button>
-                <button class="operation" onclick="multiplication()">*</button>
-                <button class="operation" onclick="division()">/</button>
-                <button class="operation" onclick="modulo()">%</button>
-                <button class="operation" onclick="resultat()">=</button>
+            <div class="gridRow">
+                <div id="function">    
+                    <button class="fctBtn" onclick="insert('^2')">x²</button>    
+                    <button class="fctBtn" onclick="insert('^')">x<small class="up">n</small></button>    
+                    <button class="fctBtn" onclick="insert('R(')"><small class="up">2</small>&radic; </button>    
+                    <button class="fctBtn" onclick="racine()"><small class="up">n</small>&radic; </button>
+                    <button class="fctBtn" onclick="fact()">!</button>    
+                    <button class="fctBtn" onclick="insert('(')">(</button>    
+                    <button class="fctBtn" onclick="insert(')')">)</button>    
+                    <button class="fctBtn" onclick="sin()">sin</button>    
+                    <button class="fctBtn" onclick="cos()">cos</button>    
+                    <button class="fctBtn" onclick="tan()">tan</button>    
+                </div>
+            </div>
+            <div class="gridRow">
+                <div id="nbrEtOperation">
+                    <div id="nbr">
+                        <button class="nbrBtn" onclick="insert('1')">1</button>
+                        <button class="nbrBtn" onclick="insert('2')">2</button>
+                        <button class="nbrBtn" onclick="insert('3')">3</button>
+                        <button class="nbrBtn" onclick="insert('4')">4</button>
+                        <button class="nbrBtn" onclick="insert('5')">5</button>
+                        <button class="nbrBtn" onclick="insert('6')">6</button>
+                        <button class="nbrBtn" onclick="insert('7')">7</button>
+                        <button class="nbrBtn" onclick="insert('8')">8</button>
+                        <button class="nbrBtn" onclick="insert('9')">9</button>
+                        <button class="nbrBtn" onclick="insert('.')">.</button>
+                        <button class="nbrBtn" onclick="insert('0')">0</button>
+                        <button class="operation" onclick="insert('P')">&pi;</button>
+                    </div>
+                    <div id="operation">
+                        <button class="clr" onclick="del()">Del</button>
+                        <button class="clr" onclick="clrScr()">C</button>
+                        <button class="operation" onclick="insert('+')">+</button>
+                        <button class="operation" onclick="insert('-')">-</button>
+                        <button class="operation" onclick="insert('*')">*</button>
+                        <button class="operation" onclick="insert('/')">/</button>
+                        <button class="operation" onclick="insert('%')">%</button>
+                        <button class="operation" onclick="getResult()">=</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="/src/js/main.js"></script>
 </body>
 </html>
