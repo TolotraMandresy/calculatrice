@@ -68,7 +68,7 @@ function toPow(param){
     if (param.search(/\^/)!=-1) {
         let jsPowExpression= '';
     
-        const regexToGetnbr= /(\w?\.?\w+\(.+\))(?=\^)|(\(.+\))+(?=\^)|([^,\^*\/+\-\(\)]+)(?=\^)/;
+        const regexToGetnbr= /(\w*\.?\w+\(.+\))(?=\^)|(\(.+\))(?=\)\^)|([^,\^*\/+\-\(\)]+)(?=\^)/;
         let nbr= regexToGetnbr.exec(param);
     
         const regexToGetExp= new RegExp(`(?<=${toRegExp(nbr[0])}\\^)\\(([^,]*)\\)+|(?<=${toRegExp(nbr[0])}\\^)([^,\\^\\*\\/\\+\\-\\(\\)]*)`)
@@ -78,7 +78,7 @@ function toPow(param){
         exposant[1]= (exposant[1]==undefined)? exposant[2] : exposant[1];
         
         jsPowExpression= `(Math.pow(${nbr[1]}, ${exposant[1]}))`;
-        
+        console.log(nbr, exposant);
         param= param.replace(`${nbr[0]}^${exposant[0]}`, jsPowExpression);
         console.log(param);
         param= toPow(param);
