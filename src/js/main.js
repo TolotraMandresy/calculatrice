@@ -58,6 +58,18 @@ String.prototype.toFact= function(){
     return res;
 }
 
+String.prototype.toSin= function(){
+    return this.replace(/S\(/g, 'Math.sin(')
+}
+
+String.prototype.toCos= function(){
+    return this.replace(/C\(/g, 'Math.cos(')
+}
+
+String.prototype.toTan= function(){
+    return this.replace(/T\(/g, 'Math.tan(')
+}
+
 /**
  * 
  * @param {String} param 
@@ -71,7 +83,11 @@ function toRegExp(param){
 }
 
 function toHuman(param){
-    return param.replace(/P/, '&pi;').replace(/R/g, '&radic;')
+    return param.replace(/P/g, '&pi;')
+                .replace(/R/g, '&radic;')
+                .replace(/S/g, 'sin')
+                .replace(/C/g, 'cos')
+                .replace(/T/g, 'tan')
 }
 
 /**
@@ -80,7 +96,7 @@ function toHuman(param){
  * @returns {String} A valid JS expression that gonna be available to use in the JS function eval()
  */
 function toJs(param){
-    return param.toPow().toSqrt().toFact().replace('P', 'Math.PI');
+    return param.toPow().toSqrt().toFact().toSin().toCos().toTan().replace('P', 'Math.PI');
 }
 
 function showExpression(){
@@ -104,8 +120,7 @@ function del(){
 }
 
 function insert(param){
-    let masque= /[*\/%]/;
-    expression+= ((expression[expression.length-1]!=')') && (param.search(masque)!=-1) && (isNaN(expression[expression.length-1])))?`0${param}`:param;
+    expression+= param;
     showExpression();
 }
 
