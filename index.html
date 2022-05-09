@@ -10,8 +10,8 @@
 <body>
     <div class="container">
         <div id="ecran">
-            <div id="expression">&nbsp;</div>
-            <div id="resultat">0</div>
+            <p id="expression">&nbsp;</p>
+            <p id="resultat">0</p>
         </div>
         <div id="buttons">
             <div id="nav" class="gridRow">
@@ -20,6 +20,10 @@
                 </div>
                 <div id="middleNav">
                     <button id="btnLeft" class="navBtn">&triangleleft;</button>
+                    <div>
+                        <button id="btnUp" class="navBtn">&triangle;</button>
+                        <button id="btnDown" class="navBtn">&triangledown;</button>
+                    </div>
                     <button id="btnRight" class="navBtn">&triangleright;</button>
                 </div>
                 <div id="rightNav">
@@ -54,7 +58,7 @@
                         <button class="nbrBtn" onclick="insert('9')">9</button>
                         <button class="nbrBtn" onclick="insert('.')">.</button>
                         <button class="nbrBtn" onclick="insert('0')">0</button>
-                        <button class="operation" onclick="insert('P')">ANS</button>
+                        <button class="nbrBtn" onclick="insert('P')">ANS</button>
                     </div>
                     <div id="operation">
                         <button class="clr" onclick="del()">Del</button>

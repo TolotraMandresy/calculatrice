@@ -1,10 +1,9 @@
 :root{
     --fond: #21ABA5;
-    --ecran: #163A5F;  /* Couleur Ecran éteint */
-    --ecranClr: #F0FFF3;
-    --bgBtn: #1D566E;
-    --txtClr: #45EBA5;
-    --fctBtn: #1D566E;
+    --ecran: #46c791;
+    --bgBtn: #284c5c;
+    --txtBtnClr: #45EBA5;
+    --fctBtn: #112c47;
 }
 
 body, html{
@@ -16,28 +15,26 @@ body, html{
     vertical-align: super;
 }
 
+#ecran, .container{
+    border-top-left-radius: 4vw 4vw;
+    border-top-right-radius: 4vw 4vw;
+}
+
 .container{
     width: 60%;
     min-width: 220px;
     max-width: 250px;
     margin: 40px auto;
     overflow: hidden;
-    border-top-left-radius: 5vw 5vw;
-    border-top-right-radius: 5vw 5vw;
-    border-bottom-right-radius: 6vw 6vw;
-    border-bottom-left-radius: 6vw 6vw;
-    border: 5px outset var(--ecran);
+    border-bottom-right-radius: 5vw 5vw;
+    border-bottom-left-radius: 5vw 5vw;
     background-color: var(--bgBtn);
-    box-shadow: 15px 15px 10px #123544;
-}
-
-#ecran{
-    margin: 1vw;
-    border: 3px inset var(--fctBtn);
+    border: 3px outset var(--bgBtn);
+    box-shadow: 10px 10px 5px var(--fctBtn);
 }
 
 #ecran.off, #ecran.off #expression, #ecran.off #resultat{
-    background-color: var(--ecran) !important;
+    background-color: var(--fctBtn) !important;
 }
 
 #ecran, #buttons{
@@ -45,38 +42,40 @@ body, html{
 }
 
 #ecran{
-    border-top-left-radius: 5vw 5vw;
-    border-top-right-radius: 5vw 5vw;
-    box-shadow: 0px 2px 10px var(--ecran);
     padding: 2vh 2vw 1vh 2vw;
-    background-color: var(--txtClr);
-    color: var(--ecran);
+    border: 3px inset var(--fctBtn);
+    box-shadow: 0px 2px 10px var(--fctBtn);
+    background-color: var(--ecran);
+    color: var(--fctBtn);
     max-height: 190px;
 }
 
 #ecran *{
-    display: block;
     word-wrap: break-word;
+    background-color: var(--ecran) !important;
+}
+
+#expression, #resultat{
+    margin: 0.5vh auto;
 }
 
 #expression{
     font-size: 4vh;
     height: 10.5vh;
-    margin-bottom: 1vh;
 }
 
 #resultat{
-    text-align: right;
+    text-align: end;
     font-weight: bold;
-    font-size: 4.4vh;
+    font-size: 4vh;
 }
 
 #expression, #resultat, #expression:focus{
-    background-color: var(--txtClr) !important;
     border: none !important;
 }
 
 #nav{
+    margin-top: 10px;
     display: grid;
     grid-template-columns: auto auto auto;
 }
@@ -87,8 +86,18 @@ body, html{
 
 #middleNav{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     justify-content: center;
+    border-radius: 50%;
+}
+
+#btnRight, #btnLeft,#middleNav div{
+    margin: auto 0;
+}
+
+#middleNav div *{
+    display: block;
+    margin: 0;
 }
 
 #rightNav *{
@@ -103,7 +112,7 @@ body, html{
 
 #buttons{
     width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     display: grid;
     grid-template-rows: auto auto;
 }
@@ -140,26 +149,26 @@ body, html{
 button{
     margin: 0;
     border: 0px;
-    transition: background-color 0.2s ease-in, color 0.2s ease-in, transform 0.2s ease-in;
+    transition: transform 0.1s ease-in-out;
 }
 
-
 .nbrBtn{
-    height: 10vw;
-    min-height: 40px;
+    height: 8vw;
+    min-height: 35px;
     max-height: 50px;
     background-color: var(--bgBtn);
-    color: var(--txtClr);
+    color: var(--txtBtnClr);
     border: 3px outset var(--bgBtn);
 }
 
-.nbrBtn, #nbr .operation{
-    box-shadow: 2px 2px 5px 2px var(--ecran) !important;
+.fctBtn, .nbrBtn, .operation, .clr{
+    box-shadow: 2px 2px 5px 2px var(--fctBtn) !important;
 }
 
-.nbrBtn:nth-last-of-type(3), .operation{
+.nbrBtn:nth-last-of-type(1), .nbrBtn:nth-last-of-type(3), .operation{
     height: initial !important;
     max-height: initial !important;
+    border: 3px outset var(--fctBtn);
 }
 
 .clr{
@@ -168,44 +177,31 @@ button{
     box-shadow: 2px 2px 5px 2px var(--bgBtn);
     border: 3px outset rgb(255, 85, 66);
 }
-.fctBtn, .nbrBtn:nth-last-of-type(3), .operation, .navBtn{
+.fctBtn, .operation, .navBtn{
     height: 5vw;
     min-height: 27px;
     max-height: 35px;
     padding-top: -5px;
-    background-color: var(--ecran);
-    color: var(--txtClr);
+    color: var(--txtBtnClr);
+    background-color: var(--fctBtn);
     box-shadow: 2px 2px 5px 2px var(--bgBtn);
-    border: 3px outset var(--ecran);
+    border: 3px outset var(--fctBtn);
 }
 
-.fctBtn:nth-of-type(1), .nbrBtn:nth-of-type(1), .clr:nth-of-type(1), #btnLeft, #btnSetting, #btnOff{
-    border-top-left-radius: 3vw 3vh;
+.nbrBtn:nth-last-of-type(3), .nbrBtn:nth-last-of-type(1){
+    background-color: var(--fctBtn);
 }
 
-.fctBtn:nth-of-type(5), .nbrBtn:nth-of-type(3), .clr:nth-of-type(2), #btnRight, #btnSetting, #btnOff{
-    border-top-right-radius: 3vw 3vh;
-}
 
-.fctBtn:nth-last-of-type(1), #btnRight, #btnSetting, #btnOff{
+.operation:nth-last-of-type(1){
     border-bottom-right-radius: 3vw 3vh;
 }
 
-.fctBtn:nth-last-of-type(5), #btnLeft, #btnSetting, #btnOff{
+.nbrBtn:nth-last-of-type(3){
     border-bottom-left-radius: 3vw 3vh;
 }
 
-.nbrBtn:nth-last-of-type(3), .operation:nth-last-of-type(2){
-    border-bottom-left-radius: 6vw 6vh;
-}
-
-.operation:nth-last-of-type(1){
-    border-bottom-right-radius: 6vw 6vh;
-}
-
 button:hover{
-    background-color: var(--txtClr);
-    color: var(--ecran);
     font-weight: bolder;
     transform: scale(1.3);
     cursor: pointer;
@@ -216,7 +212,19 @@ button:hover{
     color: #F0FFF3;
 }
 
+.nbrBtn:active{
+    background-color: var(--ecran);
+    color: var(--fctBtn);
+}
 
+.fctBtn:active, .operation:active, .nbrBtn:nth-last-of-type(3):active, .nbrBtn:nth-last-of-type(1):active{
+    background-color: var(--ecran);
+    color: var(--fctBtn);
+}
+
+.fctBtn:active, .operation:active, .nbrBtn:nth-last-of-type(3):active, .nbrBtn:nth-last-of-type(1):active, .clr:active, .nbrBtn:active{
+    transform: scale(1);
+} 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
@@ -261,10 +269,6 @@ button:hover{
     .container{
         width: 360px;
         max-width: 420px;
-        border-top-left-radius: 4vw 4vw;
-        border-top-right-radius: 4vw 5vw;
-        border-bottom-right-radius: 3vw 3vw;
-        border-bottom-left-radius: 3vw 3vw;
     }
     .fctBtn{
         height: 6vh;
