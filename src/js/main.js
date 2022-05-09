@@ -32,9 +32,6 @@ String.prototype.toPow= function(){
     return res;
 }
 
-String.prototype.toSqrt= function(){
-    return this.replace(/R\(/g, 'Math.sqrt(');
-}
 
 String.prototype.toFact= function(){
     let res= this;
@@ -45,20 +42,24 @@ String.prototype.toFact= function(){
         res= res.replace(`${nbr[0]}!`, `fact(${nbr[0]})`)
         res= res.toFact();
     }
-
+    
     return res;
 }
 
+String.prototype.toSqrt= function(){
+    return this.replace(/R(?![a-b])\(/g, 'Math.sqrt(');
+}
+
 String.prototype.toSin= function(){
-    return this.replace(/S\(/g, 'Math.sin(')
+    return this.replace(/S(?![a-b])\(/g, 'Math.sin(')
 }
 
 String.prototype.toCos= function(){
-    return this.replace(/C\(/g, 'Math.cos(')
+    return this.replace(/C(?![a-b])\(/g, 'Math.cos(')
 }
 
 String.prototype.toTan= function(){
-    return this.replace(/T\(/g, 'Math.tan(')
+    return this.replace(/T(?![a-b])\(/g, 'Math.tan(')
 }
 
 /**
@@ -74,7 +75,7 @@ function toRegExp(param){
 }
 
 function toHuman(param){
-    return param.replace(/P/g, '&pi;').replace(/R/g, '&radic;').replace(/S/g, 'sin').replace(/C/g, 'cos').replace(/T/g, 'tan')
+    return param.replace(/P(?![a-b])/g, '&pi;').replace(/R(?![a-b])/g, '&radic;').replace(/S(?![a-b])/g, 'sin').replace(/C(?![a-b])/g, 'cos').replace(/T(?![a-b])/g, 'tan')
 }
 
 /**
@@ -90,18 +91,18 @@ function showExpression(){
     document.getElementById('expression').innerHTML= (expression) ? toHuman(expression) : '&nbsp;';
 }
 
-function getResult(reinitialize= false){
-    let resultat= ((expression=='')||reinitialize) ? 0 : eval(toJs(expression));
+function getResult(){
+    let resultat= (expression=='') ? 0 : eval(toJs(expression));
     document.getElementById('resultat').innerHTML= resultat;
 }
 
 function clrScr(){
     expression='';
-    showExpression();
-    getResult(true);
+    showExpression() & getResult();
 }
 
 function del(){
+    //rehefa fonction ny soratra farany de fafana miaraka ilay ( sy ny nom fonction
     expression= (expression.search(/[A-Z]\($/)!=-1) ? expression.slice(0, expression.length-2) : expression.slice(0, expression.length-1);
     showExpression();
 }
