@@ -1,48 +1,39 @@
+/**
+ * todo: tkn crééna ngamba le fonction S(), C(), sns fa tsy remplacéna le anatinle var "expression"
+ */
+
 let expression= '';
-
-String.prototype.toSqrt= function(){
-    let res= this;
-    if(this.search(/R/)!=-1){
-        const regexToGetContenu= /(?<=R\()(.*)(?=\))|(?<=R\()([A-Z]\({1}.*\){1})(?=\))/;
-        const contenu= regexToGetContenu.exec(this)
-
-        contenu[1]= (contenu[1]==undefined) ? contenu[2] : contenu[1];
-
-        res= res.replace(`R(${contenu[0]})`, `Math.sqrt(${contenu[1]})`);
-        console.log(res);
-        res= res.toSqrt();
-    }
-
-    return res;
-}
 
 String.prototype.toPow= function(){
     let res= this;
     if (res.search(/\^/)!=-1) {
         let jsPowExpression= '';
     
-        const regexToGetnbr= /(\w*\.?\w+\(.+\)|[^,\^*\/+\-\(\)]+|\(.+\))(?=\^)/;
-        let nbr= regexToGetnbr.exec(res);
-        
-        // console.log(nbr);
+        const regexToGetNbr= /([^,\^*\/+\-\(\)]+|\w*\.?\w+\(.+\)|(?<=[%*\/+\-\(]|)\(.+\))(?=\^)/;
+        let nbr= regexToGetNbr.exec(res);
         
         const regexToGetExp= new RegExp(`(?<=${toRegExp(nbr[0])}\\^)\\(([^,]*)\\)+|(?<=${toRegExp(nbr[0])}\\^)([^,\\^\\*\\/\\+\\-\\(\\)]*)`)
         let exposant= regexToGetExp.exec(res);
-        
-        nbr[1]= (nbr[1]==undefined)? nbr[2] : nbr[1];
+
+        nbr[1]= (nbr[1]==undefined)? nbr[2] : nbr[1];        
         exposant[1]= (exposant[1]==undefined)? exposant[2] : exposant[1];
         
-        jsPowExpression= `(Math.pow(${nbr[1]}, ${exposant[1]}))`;
+        jsPowExpression= `Math.pow(${nbr[1]}, ${exposant[1]})`;
         
+        // console.log(nbr);
         // console.log(exposant);
         
-        res= res.replace(`${nbr[0]}^${exposant[0]}`, jsPowExpression);
+        res= res.replace(`${nbr[1]}^${exposant[0]}`, jsPowExpression);
         
         // console.log(res);
         
         res= res.toPow();
     }
     return res;
+}
+
+String.prototype.toSqrt= function(){
+    return this.replace(/R\(/g, 'Math.sqrt(');
 }
 
 String.prototype.toFact= function(){
@@ -83,11 +74,7 @@ function toRegExp(param){
 }
 
 function toHuman(param){
-    return param.replace(/P/g, '&pi;')
-                .replace(/R/g, '&radic;')
-                .replace(/S/g, 'sin')
-                .replace(/C/g, 'cos')
-                .replace(/T/g, 'tan')
+    return param.replace(/P/g, '&pi;').replace(/R/g, '&radic;').replace(/S/g, 'sin').replace(/C/g, 'cos').replace(/T/g, 'tan')
 }
 
 /**
@@ -115,7 +102,7 @@ function clrScr(){
 }
 
 function del(){
-    expression= expression.slice(0, expression.length-1);
+    expression= (expression.search(/[A-Z]\($/)!=-1) ? expression.slice(0, expression.length-2) : expression.slice(0, expression.length-1);
     showExpression();
 }
 

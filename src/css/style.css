@@ -261,14 +261,18 @@ button:hover{
     .container{
         width: 360px;
         max-width: 420px;
+        border-top-left-radius: 4vw 4vw;
+        border-top-right-radius: 4vw 5vw;
+        border-bottom-right-radius: 3vw 3vw;
+        border-bottom-left-radius: 3vw 3vw;
     }
     .fctBtn{
-        height: 8vh;
+        height: 6vh;
         max-height: 60px;
     }
     
     .nbrBtn{
-        height: 11vh;
+        height: 9vh;
         max-height: 80px;
     }
 }
