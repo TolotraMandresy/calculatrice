@@ -24,7 +24,7 @@ body, html{
     width: 60%;
     min-width: 220px;
     max-width: 250px;
-    margin: 40px auto;
+    margin: 20px auto 10px auto;
     overflow: hidden;
     border-bottom-right-radius: 5vw 5vw;
     border-bottom-left-radius: 5vw 5vw;
@@ -66,10 +66,10 @@ body, html{
 #expression{
     margin-left: 0;
     width: 100%;
-    font-size: 4vh;
+    font-size: 4vw;
     height: 10.5vh;
-    min-height: 40px;
-    max-height: 60px;
+    min-height: 60px;
+    max-height: 80px;
 }
 
 #resultat{
@@ -77,9 +77,9 @@ body, html{
     margin-right: 0; 
     text-align: end;
     font-weight: bold;
-    font-size: 4vh;
-    min-height: 20px;
-    max-height: 30px;
+    min-height: 40px;
+    max-height: 60px;
+    font-size: 5vw;
 }
 
 /* #expression, #resultat{
@@ -89,11 +89,7 @@ body, html{
 #nav{
     margin-top: 10px;
     display: grid;
-    grid-template-columns: auto auto auto;
-}
-
-#leftNav *{
-    float: left;
+    grid-template-columns: 10% 80% 10%;
 }
 
 #middleNav{
@@ -103,7 +99,7 @@ body, html{
     border-radius: 50%;
 }
 
-#btnSetting, #btnOff{
+#btnOff{
     border-radius: 50%;
 }
 
@@ -259,12 +255,11 @@ button:hover{
     .container{
         width: 40%;
         max-width: 270px;
-        border: 2px solid yellow;
     }
 
     .fctBtn{
         height: 4.5vh;
-        max-height: 35px;
+        max-height: 30px;
     }
     
     .nbrBtn{
@@ -283,26 +278,25 @@ button:hover{
 
     .container{
         width: 38%;
-        max-width: 340px;
-        border: 2px solid cyan;
+        max-width: 330px;
     }
 
     #expression{
-        font-size: 4.5vh;
+        font-size: 3vw;
     }
     
     #resultat{
-        font-size: 4.5vh;
+        font-size: 3.5vw;
     }
 
     .fctBtn{
-        height: 6vh;
-        max-height: 33px;
+        height: 5.7vh;
+        max-height: 30px;
     }
     
     .nbrBtn{
         height: 9vh;
-        max-height: 60px;
+        max-height: 55px;
     }
 }
 
@@ -311,7 +305,7 @@ button:hover{
     .container{
         width: 360px;
         max-width: 420px;
-        border: 2px solid pink;
+        padding-bottom: 1vh;
     }
 
     .fctBtn{
