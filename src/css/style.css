@@ -56,7 +56,17 @@ body, html{
 
 #ecran *{
     word-wrap: break-word;
-    background-color: var(--ecran) !important;
+    background-color: var(--ecran);
+}
+
+#pos{
+    font-size: xx-large;
+    animation: clignote 500ms ease-in-out 500ms infinite normal;
+}
+
+@keyframes clignote{
+    0% {color: var(--ecran);};
+    50% {color: var(--fctBtn);};
 }
 
 #expression, #resultat{
