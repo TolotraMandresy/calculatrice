@@ -82,9 +82,9 @@ body, html{
     max-height: 30px;
 }
 
-#expression, #resultat{
-    /* border: none !important; */
-}
+/* #expression, #resultat{
+    border: none !important;
+} */
 
 #nav{
     margin-top: 10px;
