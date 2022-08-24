@@ -53,7 +53,6 @@ function del() {
     beforeCursor= beforeCursor.slice(0, beforeCursor.length - deleteElLength);
     expression = beforeCursor + afterCursor;
     cursorToLeft(deleteElLength);
-    console.log(posCursor);
 }
 
 function insert(param) {

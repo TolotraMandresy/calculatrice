@@ -61,7 +61,7 @@ body, html{
 
 #pos{
     font-size: xx-large;
-    animation: clignote 500ms ease-in-out 500ms infinite normal;
+    animation: clignote 500ms ease-in-out 1s infinite normal;
 }
 
 @keyframes clignote{
