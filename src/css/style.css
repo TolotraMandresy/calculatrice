@@ -6,9 +6,13 @@
     --fctBtn: #112c47;
 }
 
-body, html{
+body{
     margin: 0;
     background-color: var(--fond);
+}
+
+body{
+    display: flex;
 }
 
 .up{
@@ -16,8 +20,8 @@ body, html{
 }
 
 #ecran, .container{
-    border-top-left-radius: 4vw 4vw;
-    border-top-right-radius: 4vw 4vw;
+    border-top-left-radius: 4vh 4vh;
+    border-top-right-radius: 4vh 4vh;
 }
 
 .container{
@@ -26,8 +30,8 @@ body, html{
     max-width: 250px;
     margin: 20px auto 10px auto;
     overflow: hidden;
-    border-bottom-right-radius: 5vw 5vw;
-    border-bottom-left-radius: 5vw 5vw;
+    border-bottom-right-radius: 3vh 4vh;
+    border-bottom-left-radius: 3vh 4vh;
     background-color: var(--bgBtn);
     border: 3px outset var(--bgBtn);
     box-shadow: 10px 10px 5px var(--fctBtn);
